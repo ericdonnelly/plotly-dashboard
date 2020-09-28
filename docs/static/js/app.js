@@ -19,7 +19,7 @@ function init() {
   
       // call functions
       update_charts(first_id);
-      // update_metadata(first_id);
+      update_metadata(first_id);
     });
   }
   
@@ -28,12 +28,12 @@ function init() {
     // select data with d3
     d3.json("data/samples.json").then((d) => {
       // data selection
-      var samples = d.samples;
-      var results = samples.filter(sampleobject => sampleobject.id == sample);
-      var result = results[0];
-      var values = result.sample_values;
-      var otu_ids = result.otu_ids;
-      var otu_labels = result.otu_labels;  
+      let samples = d.samples;
+      let results = samples.filter(sampleobject => sampleobject.id == sample);
+      let result = results[0];
+      let values = result.sample_values;
+      let otu_ids = result.otu_ids;
+      let otu_labels = result.otu_labels;  
 
       // build bar chart
       var trace1 = {
@@ -76,18 +76,23 @@ function init() {
     }
   
   // function to update metadata
-  // function update_metadata() {
-  //   // // // select data with d3
-  //   // d3.json("data/samples.json").then((data) => {
-  //   // // data selection will go here
-  //   // }
-  // }
-
+  function update_metadata(sample) {
+    d3.json("data/samples.json").then((d) => {
+        var metadata = d.metadata;
+        var results = metadata.filter(sampleobject => sampleobject.id == sample);
+        var result = results[0];
+        var meta_select = d3.select("#sample-metadata");
+        meta_select.html("");
+        Object.entries(result).forEach(([key, value]) => {
+          meta_select.append("h6").text(`${key}: ${value}`)
+      })
+      });
+    }
 
   function optionChanged(select_new) {
     // update based on selection
     update_charts(select_new);
-    // update_metadata(select_new);
+    update_metadata(select_new);
   }
 
   // call initialize dashboard function
