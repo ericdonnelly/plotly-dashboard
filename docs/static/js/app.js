@@ -22,14 +22,22 @@ function init() {
     });
   }
   
-  // function to update charts
-  function update_charts() {
+  // // function to update charts
+  // function update_charts() {
+  //   // select data with d3
+  //   d3.json("data/samples.json").then((data) => {
+  //     // data selection will go here
+  //   }
+  // }
   
-  }
-  
-  // function to update metadata
-  function update_metadata() {
-    
-  }
+  // // function to update metadata
+  // function update_metadata() {
+  //   // select data with d3
+  //   d3.json("data/samples.json").then((data) => {
+  //   // data selection will go here
+  //   }
+  // }
+
+
   // call initialize dashboard function
   init();
