@@ -42,7 +42,12 @@ function init() {
           text: otu_labels.slice(0,10).reverse(),
           name: "Bar Chart",
           type: "bar",
-          orientation: "h"
+          orientation: "h",
+          marker: {
+            size: values,
+            color: otu_ids,
+            colorscale:"Rainbow"
+            }
       };
       var data = [trace1];
       var layout = {
@@ -70,8 +75,7 @@ function init() {
       xaxis: {title:"OTU ID " +sample},
       margin: {t:30}
   };
-    Plotly.newPlot('bubble', data, layout);  
-
+    Plotly.newPlot('bubble', data, layout);
 });
     }
   
