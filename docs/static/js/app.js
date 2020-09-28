@@ -33,7 +33,8 @@ function init() {
       var result = results[0];
       var values = result.sample_values;
       var otu_ids = result.otu_ids;
-      var otu_labels = result.otu_labels;   
+      var otu_labels = result.otu_labels;  
+
       // build bar chart
       var trace1 = {
           x: values.slice(0,10).reverse(),
@@ -45,11 +46,33 @@ function init() {
       };
       var data = [trace1];
       var layout = {
-          title: "Top Ten OTUs for Individual " +sample,
+          title: "Top Ten OTUs for Sample " +sample,
           margin: {l: 100, r: 100, t: 100, b: 100}
       };
       Plotly.newPlot("bar", data, layout);  
-      });
+
+      // build bubble chart
+      var trace1 = {
+      x: otu_ids,
+      y: values,
+      text: otu_labels,
+      mode: 'markers',
+      marker: {
+      size: values,
+      color: otu_ids,
+      colorscale:"Rainbow"
+      }
+  };
+    var data = [trace1];
+    var layout = {
+      showlegend: false,
+      hovermode: 'closest',
+      xaxis: {title:"OTU ID " +sample},
+      margin: {t:30}
+  };
+    Plotly.newPlot('bubble', data, layout);  
+
+});
     }
   
   // function to update metadata
