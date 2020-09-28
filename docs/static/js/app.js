@@ -13,7 +13,6 @@ function init() {
           .property("value", id);
         });
       
-      // var random_number = Math.floor(Math.random() * 10);
       // first id
       let first_id = subject_ids[0];
   
